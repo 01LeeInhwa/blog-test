@@ -22,6 +22,12 @@ public class UserController {
     @Autowired
     private HttpSession session;
 
+    @GetMapping("/logout")
+    public String logout() {
+        session.invalidate();
+        return "redirect:/";
+    }
+
     @PostMapping("/join")
     public String join(JoinReqDto joinReqDto) {
 
