@@ -11,17 +11,17 @@
 
 
             <div class="mb-2" d-flex justify-content-end>
-                글 번호 : <span id="id" class="me-3"><i>3 </i></span> 작성자 : <span class="me-3"><i>ssar </i></span>
+                글 번호 : <span id="id" class="me-3"><i>${dto.id} </i></span> 작성자 : <span class="me-3"><i>${dto.username} </i></span>
 
 
             </div>
 
             <div>
-                <h1><b>제목입니다</b></h1>
+                <h1><b>${dto.title}</b></h1>
             </div>
             <hr />
             <div>
-                <div>내용입니다</div>
+                <div>${dto.content}</div>
             </div>
             <hr />
 
