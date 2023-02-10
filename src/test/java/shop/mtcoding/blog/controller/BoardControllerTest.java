@@ -45,7 +45,8 @@ public class BoardControllerTest {
 
     private MockHttpSession mockSession;
 
-    @BeforeEach // Test 메서드 실행 직전 마다에 호출됨
+    // @BeforeEach : Test 메서드 실행 직전 마다에 호출됨
+    @BeforeEach
     public void setUp() {
         User user = new User();
         user.setId(1);
@@ -67,7 +68,7 @@ public class BoardControllerTest {
         Map<String, Object> map = resultActions.andReturn().getModelAndView().getModel();
         List<BoardResp.BoardMainRespDto> dtos = (List<BoardResp.BoardMainRespDto>) map.get("dtos");
         String model = om.writeValueAsString(dtos);
-        System.out.println("테스트 : " + model);
+        System.out.println("main_test : " + model);
 
         // then
         resultActions.andExpect(status().isOk());
@@ -86,7 +87,7 @@ public class BoardControllerTest {
         ResultActions resultActions = mvc.perform(
                 delete("/board/" + id).session(mockSession));
         String responseBody = resultActions.andReturn().getResponse().getContentAsString();
-        System.out.println("테스트 : " + responseBody);
+        System.out.println("delete_test : " + responseBody);
 
         // then
         resultActions.andExpect(jsonPath("$.code").value(1));
@@ -104,7 +105,7 @@ public class BoardControllerTest {
         Map<String, Object> map = resultActions.andReturn().getModelAndView().getModel();
         BoardDetailRespDto dto = (BoardDetailRespDto) map.get("dto");
         String model = om.writeValueAsString(dto);
-        System.out.println("테스트 : " + model);
+        System.out.println("detail_test : " + model);
 
         // then
         resultActions.andExpect(status().isOk());
@@ -130,6 +131,7 @@ public class BoardControllerTest {
                         .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
                         .session(mockSession));
 
+        System.out.println("save_test : ");
         // then
         resultActions.andExpect(status().is3xxRedirection());
     }
