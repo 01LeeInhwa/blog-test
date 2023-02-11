@@ -9,13 +9,35 @@
                 </div>
 
                 <div class="form-group">
-                    <textarea class="form-control summernote" rows="5" id="content" name="content"></textarea>
+                    <textarea class="form-control summernote" rows="5" name="content" id="content"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">글쓰기완료</button>
+                <button onclick="save()" type="button" class="btn btn-primary">글쓰기완료</button>
             </form>
 
 
         </div>
+
+        <Script>
+            function save() {
+                let data = {
+                    "title": $("#title").val(),
+                    "content": $("#content").val()
+                };
+
+                $.ajax({
+                    type: "post",
+                    url: "/board",
+                    data: JSON.stringify(data),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json"
+                }).done((res) => { // 20X 일때
+                    alert(res.msg);
+                    location.href = "/";
+                }).fail((err) => {
+                    alert(err.responseJSON.msg);
+                });
+            }
+        </Script>
 
         <script>
             $('.summernote').summernote({
