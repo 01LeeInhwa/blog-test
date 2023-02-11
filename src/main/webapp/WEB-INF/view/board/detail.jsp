@@ -2,8 +2,8 @@
 
     <%@ include file="../layout/header.jsp" %>
 
-        <c:if test="${dto.userId == principal.id}" >
         <div class="container my-3">
+        <c:if test="${dto.userId == principal.id}" >
             <div class="mb-3">
                 <a href="/board/1/updateForm" class="btn btn-warning">수정</a>
                 <button onclick="deleteById(${dto.id})" class="btn btn-danger">삭제</button>
